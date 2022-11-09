@@ -1,0 +1,19 @@
+{
+  "name": "pairproject2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm install pg express ejs sequelize && npx sequelize-cli init && mkdir controllers views && touch controller.js home.ejs app.js && touch .gitignore && echo node_modules >> .gitignore"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.5"
+  }
+}
