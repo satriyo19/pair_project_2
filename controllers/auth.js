@@ -2,7 +2,6 @@ const {Post, Profile, Tag, User} = require('../models/index')
 const nodemailer = require('../helpers/nodeMailer')
 const bcrypt = require('bcryptjs');
 
-
 class Auth{
     static renderLogin(req, res){
         if(req.session.idUser) res.redirect(`/dashboard/${req.session.idUser}`)

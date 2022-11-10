@@ -25,6 +25,10 @@ class Controller {
             .catch(err => res.send(err))
     }
 
+    static renderAdminPage(req,res){
+        
+    }
+
     static addPostForm(req, res) {
         const { id } = req.params
         Tag.findAll()

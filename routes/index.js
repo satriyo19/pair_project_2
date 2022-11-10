@@ -6,6 +6,7 @@ const dashboard = require('./dashboard');
 const post = require('./posts')
 const profile = require('./profile')
 let logout = require('./auth/logout');
+const admin = require('./admin') 
 
 
 router.get('/',Auth.renderLogin)
