@@ -2,8 +2,8 @@ const Auth = require('../controllers/auth');
 const router = require('express').Router();
 let login = require('./auth/login');
 let register = require('./auth/register');
-let dashboard = require('./dashboard');
-let post = require('../routes/posts')
+let dashboard = require('./user/dashboard');
+let post = require('./user/posts')
 let logout = require('./auth/logout');
 
 

@@ -23,8 +23,10 @@ class Auth{
                     let isValidPassword = bcrypt.compareSync(password, user.password)
                     if(isValidPassword) {
                         req.session.idUser = user.id
+                        if(user.role === "admin") return res.redirect(`/admin/${user.id}`)
+                        if(user.role === "user") return res.redirect(`/dashboard/${user.id}`)
                         // console.log(req.session)
-                        return res.redirect(`/dashboard/${user.id}`)
+                        
                     }
                     else return res.redirect(`/login?error=${'Invalid Password'}`)
                 }
