@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const Controller = require('../controllers/controller');
-let login = require('./login');
-let register = require('./register');
+const Auth = require('../controllers/auth');
+let login = require('./auth/login');
+let register = require('./auth/register');
 
-router.get('/',Controller.renderLogin)
+router.get('/',Auth.renderLogin)
 
 router.use('/login', login)
 router.use('/register', register)
