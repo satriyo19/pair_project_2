@@ -1,12 +1,11 @@
 const Auth = require('../controllers/auth');
 const router = require('express').Router();
-const login = require('./auth/login');
-const register = require('./auth/register');
-const dashboard = require('./dashboard');
-const post = require('./posts')
-const profile = require('./profile')
+let login = require('./auth/login');
+let register = require('./auth/register');
+let dashboard = require('./user/dashboard');
+let post = require('./user/posts')
 let logout = require('./auth/logout');
-const admin = require('./admin') 
+const profile = require('./user/profile')
 
 
 router.get('/',Auth.renderLogin)
