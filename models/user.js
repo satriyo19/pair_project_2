@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasOne(models.Profile)
+      User.hasOne(models.Profile, {foreignKey: 'UserId'})
       User.hasMany(models.Post)
     }
   }
@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail: true
+        isEmail: {
+          msg: 'Email cannot be empty'
+        }
       }
     },
     password: {

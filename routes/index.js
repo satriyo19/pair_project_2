@@ -24,9 +24,19 @@ const isLogin = function(req, res, next) {
     }
 }
 
+// const isUser = function(req, res, next){
+//     if(req.session.role === 'user') res.redirect(`/dashboard/${req.session.idUser}`)
+// }
+
 router.use(isLogin)
-router.use('/admin',admin)
+
 router.use('/dashboard', dashboard)
+// router.use(isUser)
+
+router.use('/admin',admin)
+
+// router.use(isRole)
+
 router.use('/profile', profile)
 router.use('/post', post)
 router.use('/logout', logout)

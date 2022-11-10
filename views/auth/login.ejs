@@ -67,6 +67,7 @@
                 <div class="text-center text-lg-start mt-4 pt-2">
                   <button type="submit" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                    <div id="buttonDiv"></div> 
                   <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
                       class="link-danger">Register</a></p>
                     </div>
@@ -101,6 +102,24 @@
   </div>
   <!-- Right -->
 </div>
+<script>
+  function handleCredentialResponse(response) {
+    window.location.replace(`http://localhost:3000/login/google?token=${response.credential}`);
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "999533577541-r4g276bvg9vdsb088bpqddads83ktr5j.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  }
+</script>
+
 </body>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </html>
