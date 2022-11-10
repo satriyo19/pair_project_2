@@ -35,7 +35,6 @@ class Auth{
     static handlerRegister(req, res){
         let {firstName, lastName, location, contact, email, password, username} = req.body
         let idUser;
-        // console.log(firstName, lastName, location, contact, email, password, username)
         User.create({username, email, password, role: 'user'})
             .then(data => {
                 idUser = data.id

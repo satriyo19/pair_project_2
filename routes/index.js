@@ -1,9 +1,10 @@
 const Auth = require('../controllers/auth');
 const router = require('express').Router();
-let login = require('./auth/login');
-let register = require('./auth/register');
-let dashboard = require('./dashboard');
-let post = require('./posts')
+const login = require('./auth/login');
+const register = require('./auth/register');
+const dashboard = require('./dashboard');
+const post = require('./posts')
+const profile = require('./profile')
 
 
 router.get('/',Auth.renderLogin)
@@ -11,6 +12,7 @@ router.get('/',Auth.renderLogin)
 router.use('/register', register)
 router.use('/login', login)
 router.use('/dashboard', dashboard)
+router.use('/profile', profile)
 router.use('/post', post)
 
 
