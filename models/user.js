@@ -10,26 +10,38 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Profile)
       User.hasMany(models.Post)
     }
-
-    static getProfile(){
-      let option = {
-        include : {
-          model : Profile
-        }
-      }
-
-      return User.findAll(option)
-    }
   }
   User.init({
-    username: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate : {
+        notNull:true,
+        notEmpty:{
+          msg:'Username cant be empty'
+        }
+      }
+    },
     email: {
       type: DataTypes.STRING,
       validate: {
         isEmail: true
       }
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate : {
+        notNull:true,
+        notEmpty:{
+          msg:'Password cant be empty'
+        },
+        len : {
+          args : 8,
+          msg : `Minimal password 8 character`
+        }
+      }
+    },
     role: DataTypes.STRING
   }, {
     sequelize,

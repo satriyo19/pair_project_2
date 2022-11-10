@@ -12,11 +12,34 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "TagId"
       })
     }
+
+    static findById(id){
+      return Post.findOne({
+        where : {
+          id : id
+        }
+      })
+    }
   }
   Post.init({
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate : {
+        notNull:true,
+        notEmpty :{
+          msg:`Kasih judul dulu boss`
+        }
+      }
+    },
     content: DataTypes.TEXT,
-    imgUrl: DataTypes.STRING,
+    imgUrl: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate : {
+        notNull:true,
+      }
+    },
     TagId: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
   }, {
