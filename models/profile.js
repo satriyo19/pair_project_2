@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User)
     }
 
+    get profileName(){
+      return `${this.firstName} ${this.lastName}`
+    }
+
     formatName(){
       return `${this.firstName} ${this.lastName}`
     }

@@ -7,7 +7,6 @@ const port = 3000
 app.use(express.urlencoded({ extended: false }))
 app.set("view engine",'ejs');
 
-app.use('/',router)
 app.use(session({
   secret: 'ini terbuka',
   resave: false,
@@ -18,6 +17,7 @@ app.use(session({
   }
 }))
 
+app.use(router)
 
 app.listen(port, () => {
   console.log(`Phase 1 Ezz Bangeet`)
