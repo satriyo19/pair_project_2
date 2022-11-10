@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 
 class Auth{
     static renderLogin(req, res){
-        res.render('auth/login')
+        if(req.session.idUser) res.redirect(`/dashboard/${req.session.idUser}`)
+        else res.render('auth/login')
     }
 
     static handlerLogin(req, res){
@@ -21,12 +22,18 @@ class Auth{
             .then(user => {
                 if(user){
                     let isValidPassword = bcrypt.compareSync(password, user.password)
-                    if(isValidPassword) res.redirect(`/dashboard/${user.id}`)
-                    else res.redirect(`/login?error=Invalid Password`)
+                    if(isValidPassword) {
+                        req.session.idUser = user.id
+                        // console.log(req.session)
+                        return res.redirect(`/dashboard/${user.id}`)
+                    }
+                    else return res.redirect(`/login?error=${'Invalid Password'}`)
                 }
-                else res.redirect(`/login?error=Email Tidak Ditemukan`)
+                else return res.redirect(`/login?error=${'Email Tidak Ditemukan'}`)
             })
+            .catch(err => console.log(err))
     }
+
 
     static renderRegister(req, res){
         res.render('auth/createAccount')
@@ -46,7 +53,15 @@ class Auth{
             })
             .catch(err => res.send(err))
     }
-
+    
+    static renderLogout(req,res){
+        req.session.destroy((err) => {
+            if(err)res.send(err)
+            else{
+                res.redirect('/login')
+            }
+        })
+    }
 
 }
 
