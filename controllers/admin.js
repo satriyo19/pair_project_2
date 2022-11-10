@@ -19,9 +19,26 @@ class Admin {
     // User.findAll(option)
     Profile.findAll(option)
       .then(data => {
-        res.render('admin/adminPage', {data})
+        res.render('admin/adminPage', {data, id: id})
         // console.log(data)
         // res.send(data)
+      })
+      .catch(err => res.send(err))
+  }
+
+  static renderDelete(req, res){
+    let {id, idDelete} = req.params
+    let option = {
+      where: {
+        id: idDelete
+      }
+    }
+    let userDeleted;
+
+    User.destroy(option)
+      .then(data => {
+        userDeleted = data
+        res.redirect(`/admin/${id}`)
       })
       .catch(err => res.send(err))
   }

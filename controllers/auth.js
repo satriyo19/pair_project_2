@@ -88,12 +88,12 @@ class Auth {
 
 
     static handlerRegister(req, res) {
-        let { firstName, lastName, location, contact, email, password, username } = req.body
+        let { firstName, lastName, location, contact, email, password, username, profilePicture } = req.body
         let idUser;
         User.create({ username, email, password, role: 'user' })
             .then(data => {
                 idUser = data.id
-                return Profile.create({ firstName, lastName, location, contact, UserId: idUser })
+                return Profile.create({ firstName, lastName, location, contact, UserId: idUser, profilePicture })
             })
             .then(() => {
                 nodemailer(email)

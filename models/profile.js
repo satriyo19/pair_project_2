@@ -34,6 +34,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Please input your LastName"
         }
       }},
+    profilePicture: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please input your Profile Picture"
+          }
+        }},
     location: {
       type: DataTypes.STRING,
       allowNull: false,
