@@ -8,6 +8,16 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Profile)
       User.hasMany(models.Post)
     }
+
+    static getProfile(){
+      let option = {
+        include : {
+          model : Profile
+        }
+      }
+
+      return User.findAll(option)
+    }
   }
   User.init({
     username: DataTypes.STRING,
