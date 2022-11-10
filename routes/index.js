@@ -5,7 +5,7 @@ let register = require('./register');
 let dashboard = require('./dashboard');
 let post = require('../routes/posts')
 
-router.get('/',Controller.renderLogin)
+router.get('/',Auth.renderLogin)
 
 router.use('/login', login)
 router.use('/register', register)
