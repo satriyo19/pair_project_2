@@ -11,10 +11,12 @@
 
     <div class="" style="width: 100%; align-items: center; display: flex; justify-content: center; padding: 10em 0;">
     <div class="col-md-16 col-lg-6 col-xl-4 offset-xl-1 ml-0"> 
+      <div class="container">
+        <img src="https://glosarium.org/wp-content/uploads/2022/04/minder_10009.png" style="width: 720px;">
+      </div>
         <form action="/register" method="post">
           <div class="divider d-flex align-items-center my-4">
           </div>
-
           <!-- First Name input -->
           <div class="form-outline mb-4">
               <label class="form-label" for="form3Example3">First Name</label>
@@ -73,6 +75,11 @@
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
           </div>
         </form>
+        <% if(errors) {%>
+          <% errors.forEach(el => {%>
+            <p style="color: red;"><%= el %> </p>
+          <% }) %> 
+        <% } %> 
       </div>
     </div>
 </body>

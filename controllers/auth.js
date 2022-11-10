@@ -4,8 +4,11 @@ const bcrypt = require('bcryptjs');
 
 class Auth{
     static renderLogin(req, res){
+        let {errors} = req.query
+        // console.log(errors)
+        if(errors) errors = errors.split(',')
         if(req.session.idUser) res.redirect(`/dashboard/${req.session.idUser}`)
-        else res.render('auth/login')
+        else res.render('auth/login', {errors})
     }
 
     static handlerLogin(req, res){
@@ -28,16 +31,27 @@ class Auth{
                         // console.log(req.session)
                         
                     }
-                    else return res.redirect(`/login?error=${'Invalid Password'}`)
+                    else{
+                        let errPassword = 'Invalid Password'
+                        return res.redirect(`/login?errors=${errPassword}`)
+                    }
                 }
-                else return res.redirect(`/login?error=${'Email Tidak Ditemukan'}`)
+                else return res.redirect(`/login?errors=Email Tidak Ditemukan`)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                err = err.errors.map(el => {
+                    return el.message
+                })
+                res.redirect(`/login?errors=${err}`)
+            })
     }
 
 
     static renderRegister(req, res){
-        res.render('auth/createAccount')
+        let {errors} = req.query
+        // console.log(errors)
+        if(errors) errors = errors.split(',')
+        res.render('auth/createAccount', {errors})
     }
 
     static handlerRegister(req, res){
@@ -52,7 +66,12 @@ class Auth{
                 nodemailer(email)
                 res.redirect('/login')
             })
-            .catch(err => res.send(err))
+            .catch(err => {
+                err = err.errors.map(el => {
+                    return el.message
+                })
+                res.redirect(`/register?errors=${err}`)
+            })
     }
     
     static renderLogout(req,res){

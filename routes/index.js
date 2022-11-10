@@ -17,7 +17,7 @@ router.use('/login', login)
 const isLogin = function(req, res, next) {
     if(!req.session.idUser){
         const error = 'Please Login'
-        res.redirect(`/login?error=${error}`)
+        res.redirect(`/login?errors=${error}`)
     }else{
         next()
     }
