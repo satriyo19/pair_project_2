@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <title>Extragaminder-Add Post</title>
 </head>
+
 <body>
-  <div class="d-flex flex-column justify-content-center align-items-center" style="padding:50px;">
-    <form action="/post/add/<%= id %> " method="post" style="display: flex;flex-direction:column;width: 35%;">
-      <label for="title"></label>
-      <label for="imgUrl"></label>
-      <label for="content"></label>
-      <label for="TagId"></label>
-      <input type="text" name="title" id="title">
-      <input type="text" name="imgUrl" id="imgUrl">
-      <textarea name="content" id="content"></textarea>
-      <select name="TagId">
-        <% data.forEach(el => { %>
-          <option value="<%= el.id %>"><%= el.name %></option>
-        <% }) %> 
-      </select>
-      <button type="submit" class="btn btn-secondary">ADD NEW POST</button>
-    </form>
-  </div>
+  <%- include('./partials/navbar.ejs') %>
+    <% if(errors) { %>
+      <div class="text-danger position-absolute" style="transform: translateY(150px) translateX(250px);">
+        <% errors.split(',').map(el=> { %>
+          <p><%= el %> </p>
+          <% }) %>
+      </div>
+      <% }%>
+        <div class="d-flex flex-column justify-content-center align-items-center"
+          style="padding:50px;background-color:rgb(144, 157, 187);">
+          <h1>ADD POST</h1>
+          <form action="/post/add/<%= id %>" method="post"
+            style="display: flex;flex-direction:column;width: 35%;justify-content: center;">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control">
+            <label for="imgUrl">Image</label>
+            <input type="text" name="imgUrl" id="imgUrl" class="form-control">
+            <label for="content">Content</label>
+            <textarea name="content" id="content"></textarea>
+            <label for="TagId">Tag</label>
+            <select name="TagId" class="form-select">
+              <% data.forEach(el=> { %>
+                <option value="<%= el.id %>">
+                  <%= el.name %>
+                </option>
+                <% }) %>
+            </select>
+            <div>
+              <button type="submit" class="btn btn-secondary" style="width: 25%;">ADD POST</button>
+            </div>
+          </form>
+        </div>
 </body>
+
 </html>

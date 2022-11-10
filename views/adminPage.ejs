@@ -17,10 +17,11 @@
         <td>Fullname</td>
         <td>Location</td>
         <td>Contact</td>
+        <td>Total Post</td>
       </tr>
     </thead>
     <tbody>
-      <% data.forEach((el,index)=> { %>
+      <% dataProfile.forEach((el,index)=> { %>
         <tr>
           <td>
             <%= index +1 %>
@@ -33,6 +34,9 @@
           </td>
           <td>
             <%= el.contact %>
+          </td>
+          <td>
+             <%= el.User.Posts.length %> 
           </td>
         </tr>
         <% }) %>
