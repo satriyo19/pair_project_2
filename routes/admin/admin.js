@@ -1,7 +1,7 @@
-const Controller = require('../../controllers/user');
+const Admin = require('../../controllers/admin');
 const router = require('express').Router();
 
-router.get('/', Controller.renderAdmin)
+router.get('/:id', Admin.renderAdminPage)
 
 
 module.exports = router

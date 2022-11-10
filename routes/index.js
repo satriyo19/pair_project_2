@@ -6,6 +6,7 @@ let dashboard = require('./user/dashboard');
 let post = require('./user/posts')
 let logout = require('./auth/logout');
 const profile = require('./user/profile')
+const  admin = require('./admin/admin')
 
 
 router.get('/',Auth.renderLogin)
@@ -24,6 +25,7 @@ const isLogin = function(req, res, next) {
 }
 
 router.use(isLogin)
+router.use('/admin',admin)
 router.use('/dashboard', dashboard)
 router.use('/profile', profile)
 router.use('/post', post)
