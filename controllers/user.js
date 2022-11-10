@@ -1,6 +1,7 @@
 const { Post, User, Tag, Profile } = require('../models')
 const { Op } = require('sequelize')
 const timeAgo = require('../helpers/timeAgo')
+const { query } = require('express')
 class Controller {
     static renderDashboard(req, res) {
         const { id } = req.params
@@ -26,9 +27,10 @@ class Controller {
     }
 
     static addPostForm(req, res) {
+        const {errors} = req.query
         const { id } = req.params
         Tag.findAll()
-            .then(data => res.render('user/addPost', { data, id }))
+            .then(data => res.render('user/addPost', { data, id ,errors}))
             .catch(err => res.send(err))
     }
 
@@ -39,7 +41,12 @@ class Controller {
             title, content, imgUrl, UserId: id, TagId
         })
             .then(() => res.redirect(`/dashboard/${id}`))
-            .catch(err => res.send(err))
+            .catch(err => {
+                const errors = err.errors.map(el => {
+                    return el.message
+                })
+                res.redirect(`/post/add/${id}?errors=${errors.join(',')}`)
+            })
     }
 
     static editPostForm(req, res) {

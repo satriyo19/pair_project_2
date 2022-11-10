@@ -32,13 +32,20 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    content: DataTypes.TEXT,
-    imgUrl: {
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.TEXT,
       allowNull:false,
       validate : {
-        notNull:true,
+        notNull: {
+          msg:`Kasih spill dikit lah kak`
+        },
+        notEmpty : {
+          msg:`Kasih spill dikit lah kak`
+        }
       }
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
     },
     TagId: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
