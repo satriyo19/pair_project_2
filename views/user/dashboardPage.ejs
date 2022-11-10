@@ -5,69 +5,74 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./dashboard.css"/>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Extragaminder - Dashboard</title>
+  <title>Extragaminder - Dashboard</title>
 </head>
 
 <body>
-  <div style="display: flex; justify-content:center;align-items: center;flex-direction: column;">
-    <form action="">
-      <input type="search" name="search" autocomplete="off" class="form-control h-25">
-      <button type="submit">search</button>
-      <select name="sort">
-        <option selected disabled>--filter by--</option>
-        <option value="title">title name</option>
-        <option value="createdAt">date</option>
-      </select>
-      <button type="submit">sort</button>
-    </form>
-    <a href="/post/add/<%= id %>"><button>ADD NEW POST</button></a>
-    <a href="/profile/<%= id %>"><button>YOUR PROFILE</button></a>
-    <div style="width:50%;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-      <% dataPost.forEach( post=> { %>
-        <div class="col-md-8">
-          <div class="box box-widget">
-            <div class="box-header with-border">
-              <% dataUser.forEach(user=> { %>
-                <% if(user.id==post.UserId) { %>
-                  <div class="user-block">
-                    <span class="username"><a href="#">
+  <%- include('./partials/navbar.ejs') %>
+    <div class="d-flex flex-column align-items-center justify-content-center" style="padding:20px;">
+      <form action="" class="d-flex" style="position:absolute;top:65px;right:130px;">
+        <select name="sort" class="form-select">
+          <option selected disabled>--filter by--</option>
+          <option value="title">title name</option>
+          <option value="createdAt">date</option>
+        </select>
+        <button type="submit" class="btn btn-secondary"
+          style="border-radius:10%;background-color: rgb(93, 123, 163);">sort</button>
+      </form>
+
+      <div class="d-flex flex-column align-items-center justify-content-center w-50 p-4"
+        style="border-radius:10px;background-color:rgb(144, 157, 187);">
+        <% dataPost.forEach( post=> { %>
+          <div class="col-md-8" style="margin-bottom: 15px;">
+            <div class="box box-widget">
+              <div class="box-header with-border">
+                <% dataUser.forEach(user=> { %>
+                  <% if(user.id==post.UserId) { %>
+                    <div class="user-block">
+                      <a href="/profile/<%=user.id%>" class="text-dark text-decoration-none">
+                        <img src="">
                         <%= user.username %>
-                      </a></span>
-                    <br>
-                  </div>
+                      </a>
+                      <br>
+                    </div>
+              </div>
+              <div class="container">
+                <div class="d-flex">
+                  <p style="margin-right:auto;font-weight: 500;">
+                    <%= post.title %>
+                  </p>
                   <% if(post.UserId==id) { %>
-                    <a href="/post/<%= id %>/edit/<%= post.id %>"><button>EDIT</button></a>
-                    <a href="/post/<%= id %>/delete/<%= post.id %>"><button>DELETE</button></a>
+                    <a href="/post/<%= id %>/edit/<%= post.id %>" class="btn">Edit</a>
+                    <a href="/post/<%= id %>/delete/<%= post.id %>" class="btn">Delete</a>
                     <% } %>
                       <% } %>
                         <% }) %>
-            </div>
-            <div class="box-body">
-              <p><%= post.title %></p>
-              <div>
-                <% if(post.imgUrl) { %>
-                  <img src="<%= post.imgUrl %>" style="width:250px;">
-                <% } %>
-                <%= post.content %>
-                <%= post.Tag.name %>
-              </div>
-              <span class="description">Shared publicly - <%= timeAgo(post.createdAt)%> </span>
-              <div>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                <span class="pull-right text-muted">45 likes - 2 comments</span>
+                </div>
+                <div class="container">
+                  <% if(post.imgUrl) { %>
+                    <img src="<%= post.imgUrl %>" style="width:350px;height: 250px;">
+                    <% } %>
+                      <div style="font-weight: 500;">
+                        <%= post.content %>
+                          <%= post.Tag.name %>
+                      </div>
+                </div>
+                <span class="description">Shared publicly - <%= timeAgo(post.createdAt)%> </span>
+                <div>
+                  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <% }) %>
+          <hr style="color: white;height:20px;width: 100%;">
+          <% }) %>
+      </div>
     </div>
-    <a href="/logout"><button>Logout</button></a>
-  </div>
 </body>
 
 </html>
