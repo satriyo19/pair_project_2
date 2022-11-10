@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull:true,
         notEmpty:{
           msg:'Username cant be empty'
-        }
+        },
       }
     },
     email: {

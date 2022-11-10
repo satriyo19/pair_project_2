@@ -7,19 +7,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extragaminder - Admin </title>
+  <title>Extraminder - Admin </title>
 </head>
 
 <body>
   <h1 class="text-center">Database ExtraMinder</h1>
   <div class="container" style="padding: 50px;">
+    <a href="/logout" style="margin-left:25px ;color:white !important;" class="btn btn-dark">Logout</a>
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light">
         <tr>
           <th>No</th>
           <th>Name</th>
           <th>Information</th>
-          <th>Tahun Register</th>
+          <th>Role</th>
           <th>Alamat</th>
           <th>Actions</th>
         </tr>
@@ -58,7 +59,7 @@
               <%= el.location %>
             </td>
             <td>
-              <a href="/admin/<%= id %>/delete/<%= el.User.id %>"><button type="button" class="btn btn-link btn-sm btn-rounded">
+              <a href="/admin/<%= id %>/delete/<%= el.User.id %>"><button type="button" class="btn btn-sm btn-danger">
                 Delete
               </button></a>
             </td>
