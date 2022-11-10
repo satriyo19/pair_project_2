@@ -8,14 +8,12 @@
 </head>
 <body>
   <div style="display: flex; justify-content:center; align-items:center;">
-    <form action="/post/add" method="post" style="display: flex;flex-direction:column;width: 35%;">
+    <form action="/post/add/<%= id %> " method="post" style="display: flex;flex-direction:column;width: 35%;">
       <input type="text" name="title">
       <br>
       <input type="text" name="imgUrl">
       <br>
       <textarea name="content"></textarea>
-      <br>
-      <input type="number" name="UserId" value="<%= userId %>">
       <br>
       <select name="TagId">
         <% data.forEach(el => { %>

@@ -1,6 +1,6 @@
 const {Post, Profile, Tag, User} = require('../models/index')
+const nodemailer = require('../helpers/nodeMailer')
 const bcrypt = require('bcryptjs');
-
 
 class Auth{
     static renderLogin(req, res){
@@ -43,13 +43,13 @@ class Auth{
     static handlerRegister(req, res){
         let {firstName, lastName, location, contact, email, password, username} = req.body
         let idUser;
-        // console.log(firstName, lastName, location, contact, email, password, username)
         User.create({username, email, password, role: 'user'})
             .then(data => {
                 idUser = data.id
                 return Profile.create({firstName, lastName, location, contact, UserId: idUser})
             })
             .then(() => {
+                nodemailer(email)
                 res.redirect('/login')
             })
             .catch(err => res.send(err))

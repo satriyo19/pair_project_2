@@ -15,37 +15,52 @@
 <body>
   <div style="display: flex; justify-content:center;align-items: center;flex-direction: column;">
     <form action="">
-      <input type="search" name="search">
+      <input type="search" name="search" autocomplete="off" class="form-control h-25">
       <button type="submit">search</button>
+      <select name="sort">
+        <option selected disabled>--filter by--</option>
+        <option value="title">title name</option>
+        <option value="createdAt">date</option>
+      </select>
+      <button type="submit">sort</button>
     </form>
-    <a href="/post/add"><button>ADD NEW POST</button></a>
+    <a href="/post/add/<%= id %>"><button>ADD NEW POST</button></a>
+    <a href="/profile/<%= id %>"><button>YOUR PROFILE</button></a>
     <div style="width:50%;display:flex;justify-content:center;flex-direction:column;align-items:center;">
       <% dataPost.forEach( post=> { %>
         <div class="col-md-8">
           <div class="box box-widget">
             <div class="box-header with-border">
               <% dataUser.forEach(user=> { %>
-                <% if(user.id == post.UserId) { %>
+                <% if(user.id==post.UserId) { %>
                   <div class="user-block">
                     <span class="username"><a href="#">
                         <%= user.username %>
                       </a></span>
-                    <span class="description">Shared publicly - 7:30 PM Today</span>
+                    <br>
                   </div>
-                  <a href="/post/edit/<%= post.id %>"><button>EDIT</button></a>
-                  <a href="/post/delete/<%= post.id %>"><button>DELETE</button></a>
-                  <% } %>
-              <% }) %>
+                  <% if(post.UserId==id) { %>
+                    <a href="/post/<%= id %>/edit/<%= post.id %>"><button>EDIT</button></a>
+                    <a href="/post/<%= id %>/delete/<%= post.id %>"><button>DELETE</button></a>
+                    <% } %>
+                      <% } %>
+                        <% }) %>
             </div>
             <div class="box-body">
-              <p><%= post.title %> </p>
-              <img src="<%= post.imgUrl %>" style="width:250px;">
+              <p><%= post.title %></p>
               <div>
-                <%= post.content %> 
+                <% if(post.imgUrl) { %>
+                  <img src="<%= post.imgUrl %>" style="width:250px;">
+                <% } %>
+                <%= post.content %>
+                <%= post.Tag.name %>
               </div>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted">45 likes - 2 comments</span>
+              <span class="description">Shared publicly - <%= timeAgo(post.createdAt)%> </span>
+              <div>
+                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                <span class="pull-right text-muted">45 likes - 2 comments</span>
+              </div>
             </div>
           </div>
         </div>

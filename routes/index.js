@@ -5,6 +5,7 @@ let register = require('./auth/register');
 let dashboard = require('./user/dashboard');
 let post = require('./user/posts')
 let logout = require('./auth/logout');
+const profile = require('./user/profile')
 
 
 router.get('/',Auth.renderLogin)
@@ -21,12 +22,11 @@ const isLogin = function(req, res, next) {
         next()
     }
 }
+
 router.use(isLogin)
-
 router.use('/dashboard', dashboard)
-
+router.use('/profile', profile)
 router.use('/post', post)
-
 router.use('/logout', logout)
 
 
