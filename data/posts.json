@@ -1,0 +1,23 @@
+[
+  {
+    "title":"First Post",
+    "content" : "Hay guys",
+    "imgUrl" : "firstpost.png",
+    "TagId" : 1,
+    "UserId" :1 
+  }, 
+  {
+    "title":"Second Post",
+    "content" : "Hay guys",
+    "imgUrl" : "secondpost.png",
+    "TagId" : 2,
+    "UserId" :1 
+  },
+  {
+    "title":"Third Post",
+    "content" : "Hay guys",
+    "imgUrl" : "thirdpost.png",
+    "TagId" :3,
+    "UserId" :1 
+  }
+]

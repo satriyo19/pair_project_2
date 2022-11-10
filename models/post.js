@@ -5,8 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      Post.belongsTo(models.User)
-      Post.belongsTo(models.Tag)
+      Post.belongsTo(models.User ,{
+        foreignKey: "UserId"
+      })
+      Post.belongsTo(models.Tag,{
+        foreignKey: "TagId"
+      })
     }
   }
   Post.init({

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extragaminder-Edit Post</title>
+</head>
+<body>
+  <form action="/post/edit/<%= dataPost.id %>" method="post">
+    <input type="text" name="title" value="<%= dataPost.title %>">
+      <br>
+      <input type="text" name="imgUrl" value="<%= dataPost.imgUrl %>">
+      <br>
+      <textarea name="content">
+        <%= dataPost.content %>
+      </textarea>
+      <br>
+      <input type="number" name="UserId" value="<%= dataPost.UserId %>">
+      <br>
+      <select name="TagId">
+        <% data.forEach(el => { %>
+          <option value="<%= el.id %>" <%= dataPost.TagId == el.id ? selected='selected' : '' %>><%= el.name %></option>
+        <% }) %> 
+      </select>
+      <button type="submit">EDIT POST</button>
+  </form>
+</body>
+</html>
