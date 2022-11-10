@@ -1,9 +1,10 @@
+const Auth = require('../controllers/auth')
 const router = require('express').Router();
 const Controller = require('../controllers/controller');
-let login = require('./login');
-let register = require('./register');
+let login = require('./auth/login');
+let register = require('./auth/register');
 let dashboard = require('./dashboard');
-let post = require('../routes/posts')
+let post = require('./posts')
 
 router.get('/',Auth.renderLogin)
 

@@ -1,13 +1,5 @@
 const { Post, User, Tag, Profile } = require('../models')
 class Controller {
-    static renderLogin(req, res) {
-        res.render('login')
-    }
-
-    static renderRegister(req, res) {
-        res.render('createAccount')
-    }
-
     static renderDashboard(req, res) {
         const { userId } = req.params
         let dataPost, dataUser

@@ -1,4 +1,5 @@
 const {Post, Profile, Tag, User} = require('../models/index')
+const nodemailer = require('../helpers/nodeMailer')
 
 class Auth{
     static renderLogin(req, res){
@@ -30,6 +31,7 @@ class Auth{
                 return Profile.create({firstName, lastName, location, contact, UserId: idUser})
             })
             .then(() => {
+                nodemailer(email)
                 res.redirect('/login')
             })
             .catch(err => res.send(err))
