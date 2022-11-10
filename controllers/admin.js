@@ -1,5 +1,4 @@
-const { Profile, User, Post} = require('../models')
-let sequelize = require('sequelize');
+const { Profile, User, Post, Tag, sequelize } = require('../models')
 
 class Admin {
   static renderAdminPage(req, res) {

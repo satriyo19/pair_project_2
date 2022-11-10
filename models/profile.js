@@ -12,9 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       return `${this.firstName} ${this.lastName}`
     }
 
-    formatName(){
-      return `${this.firstName} ${this.lastName}`
+    getLocation(){
+      return `Indonesia, ${this.location}`
     }
+
   }
   Profile.init({
     firstName: {

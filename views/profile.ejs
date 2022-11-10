@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <title>Extragaminder -- Profile</title>
 </head>
+
 <body>
-  <h2> Profile <%= data.formatName() %></h2>
-  <div style="display:flex;flex-direction: column;">
-    <p><%= data.contact %></p> 
-    <p><%= data.location %></p> 
+  <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+    <h2> Profile # <%= data.id %></h2>
+    <h2>
+      <%= data.profileName %>
+    </h2>
+    <div style="display:flex;flex-direction: column;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw4GVTa5rCatvKGw3El6BLqZUks44zL9ezZg&usqp=CAU"
+        width="250px">
+      <p> Contact info : <%= data.contact %>
+      </p>
+      <p>Location : <%= data.getLocation() %>
+      </p>
+    </div>
   </div>
 </body>
+
 </html>
