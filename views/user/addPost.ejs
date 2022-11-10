@@ -9,21 +9,25 @@
   <title>Extragaminder-Add Post</title>
 </head>
 <body>
-  <div class="d-flex flex-column justify-content-center align-items-center" style="padding:50px;">
-    <form action="/post/add/<%= id %> " method="post" style="display: flex;flex-direction:column;width: 35%;">
-      <label for="title"></label>
-      <label for="imgUrl"></label>
-      <label for="content"></label>
-      <label for="TagId"></label>
-      <input type="text" name="title" id="title">
-      <input type="text" name="imgUrl" id="imgUrl">
+  <%- include('./partials/navbar.ejs') %>
+  <div class="d-flex flex-column justify-content-center align-items-center" style="padding:50px;background-color:rgb(144, 157, 187) ">
+    <h1>ADD POST</h1>
+    <form action="/post/add/<%= id %> " method="post" style="display: flex;flex-direction:column;width: 35%;justify-content: center;">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" class="form-control">
+      <label for="imgUrl">Image</label>
+      <input type="text" name="imgUrl" id="imgUrl" class="form-control">
+      <label for="content">Content</label>
       <textarea name="content" id="content"></textarea>
-      <select name="TagId">
+      <label for="TagId">Tag</label>
+      <select name="TagId" class="form-select">
         <% data.forEach(el => { %>
           <option value="<%= el.id %>"><%= el.name %></option>
         <% }) %> 
       </select>
-      <button type="submit" class="btn btn-secondary">ADD NEW POST</button>
+      <div>
+        <button type="submit" class="btn btn-secondary" style="width: 25%;">ADD POST</button>
+      </div>
     </form>
   </div>
 </body>

@@ -1,9 +1,9 @@
-const { Profile, User } = require('../models')
+const { Profile, User, Post, Tag, sequelize } = require('../models')
 
 class Admin {
   static renderAdminPage(req, res) {
     const { id } = req.params
-    let dataAdmin;
+    let dataAdmin, dataProfile;
     User.findOne({
       where: {
         id: id
@@ -11,9 +11,23 @@ class Admin {
     })
       .then(data => {
         dataAdmin = data
-        return Profile.findAll()
+        return Profile.findAll({
+          include: {
+            model : User,
+            include : {
+              model : Post,
+            },
+            where : {
+              role : 'user'
+            }
+          },
+        })
       })
-      .then(data => res.render('adminPage', { data, dataAdmin }))
+      .then(data => {
+        dataProfile = data
+        res.render('adminPage', {dataProfile, dataAdmin })
+      })
+      .catch(err => res.send(err))
   }
 }
 

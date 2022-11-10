@@ -1,4 +1,4 @@
-const {Post, Profile, Tag, User} = require('../models/index')
+const {Profile, User} = require('../models/index')
 const nodemailer = require('../helpers/nodeMailer')
 const bcrypt = require('bcryptjs');
 
@@ -25,7 +25,6 @@ class Auth{
                         req.session.idUser = user.id
                         if(user.role === "admin") return res.redirect(`/admin/${user.id}`)
                         if(user.role === "user") return res.redirect(`/dashboard/${user.id}`)
-                        // console.log(req.session)
                         
                     }
                     else return res.redirect(`/login?error=${'Invalid Password'}`)

@@ -13,8 +13,8 @@
 
 <body>
   <%- include('./partials/navbar.ejs') %>
-    <div class="d-flex flex-column align-items-center justify-content-center" style="padding:20px;">
-      <form action="" class="d-flex" style="position:absolute;top:65px;right:130px;">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="padding:20px;margin-top: 25px;">
+      <form action="" class="d-flex" style="position:fixed;top:65px;right:110px;">
         <select name="sort" class="form-select">
           <option selected disabled>--filter by--</option>
           <option value="title">title name</option>
@@ -33,7 +33,7 @@
                 <% dataUser.forEach(user=> { %>
                   <% if(user.id==post.UserId) { %>
                     <div class="user-block">
-                      <a href="/profile/<%=user.id%>" class="text-dark text-decoration-none">
+                      <a href="/profile/<%=user.id%>" class="text-dark text-decoration-none fs-4">
                         <img src="">
                         <%= user.username %>
                       </a>
@@ -53,12 +53,17 @@
                         <% }) %>
                 </div>
                 <div class="container">
+                  <p> <%=  %> </p>
                   <% if(post.imgUrl) { %>
                     <img src="<%= post.imgUrl %>" style="width:350px;height: 250px;">
                     <% } %>
                       <div style="font-weight: 500;">
-                        <%= post.content %>
-                          <%= post.Tag.name %>
+                        <p>
+                          <%= post.content %>
+                        </p>
+                        <p>
+                          #<%= post.Tag.name %>
+                        </p>
                       </div>
                 </div>
                 <span class="description">Shared publicly - <%= timeAgo(post.createdAt)%> </span>

@@ -15,20 +15,24 @@ class Controller {
             .then(data => {
                 dataPost = data
                 return User.findAll({
-                    include :Profile
+                    include: Profile,
                 })
             })
             .then(data => {
                 dataUser = data
-                res.render('user/dashboardPage', { dataPost, dataUser, id, timeAgo})
+                res.render('dashboardPage', { dataPost, dataUser, id, timeAgo })
             })
             .catch(err => res.send(err))
+    }
+
+    static renderAdminPage(req,res){
+        
     }
 
     static addPostForm(req, res) {
         const { id } = req.params
         Tag.findAll()
-            .then(data => res.render('user/addPost', { data, id }))
+            .then(data => res.render('addPost', { data, id }))
             .catch(err => res.send(err))
     }
 
@@ -51,7 +55,7 @@ class Controller {
                 dataPost = data
                 return Tag.findAll()
             })
-            .then((data) => res.render('user/editPost', { data, dataPost, id }))
+            .then((data) => res.render('editPost', { data, dataPost, id }))
             .catch(err => res.send(err))
 
     }
@@ -96,9 +100,7 @@ class Controller {
                 UserId: id
             }
         })
-            .then(data => {
-                res.render('profile', { data })
-            })
+            .then(data => res.render('profile', { data }))
             .catch(err => res.send(err))
     }
 }
