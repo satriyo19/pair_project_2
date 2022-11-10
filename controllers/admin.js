@@ -20,7 +20,6 @@ class Admin {
     Profile.findAll(option)
       .then(data => {
         res.render('admin/adminPage', {data, id: id})
-        // console.log(data)
         // res.send(data)
       })
       .catch(err => res.send(err))

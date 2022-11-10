@@ -18,7 +18,7 @@ class Auth {
             });
             const payload = ticket.getPayload();
             
-            // console.log(payload)
+            console.log(payload)
             // If request specified a G Suite domain:
             // const domain = payload['hd'];
         }
