@@ -1,15 +1,8 @@
 const { Post, User, Tag, Profile } = require('../models')
 class Controller {
-    static renderLogin(req, res) {
-        res.render('login')
-    }
-
-    static renderRegister(req, res) {
-        res.render('createAccount')
-    }
 
     static renderDashboard(req, res) {
-        const { userId } = req.params
+        const { id } = req.params
         let dataPost, dataUser
         Post.findAll({
             include: Tag
@@ -22,7 +15,7 @@ class Controller {
             })
             .then(data => {
                 dataUser = data
-                res.render('dashboardPage', { dataPost, dataUser, userId })
+                res.render('dashboardPage', { dataPost, dataUser, id })
             })
             .catch(err => res.send(err))
     }
